@@ -57,9 +57,6 @@ window.onload = function() {
 			if(bird.y > game.height){
 				die();
 			}
-		},
-		render:function(){
-			game.debug.bodyInfo(bird,32,32);
 		}
 	};
 
