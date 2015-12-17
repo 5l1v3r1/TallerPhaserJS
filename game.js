@@ -54,7 +54,7 @@ window.onload = function() {
 		},
 		update:function(){
 			game.physics.arcade.collide(bird, pipeGroup, die);
-			if(bird.y > game.height){
+			if((bird.y > game.height) || (bird.y < 0)){
 				die();
 			}
 		}
@@ -64,7 +64,7 @@ window.onload = function() {
    game.state.start("Play");
 
 	function updateScore(){
-		scoreText.text = "Puntuacion: "+score+"\nMejor puntiacion: "+topScore;
+		scoreText.text = "Puntuacion: " + score + "\nMejor puntiacion: " + topScore;
 	}
 
 	function flap(){
