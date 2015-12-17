@@ -15,6 +15,10 @@ window.onload = function() {
 	var pipeHole = 120;
 	var pipeGroup;
 
+	var score=0;
+	var scoreText;
+  var topScore;
+
   var play = function(game){};
 
   play.prototype = {
@@ -26,6 +30,14 @@ window.onload = function() {
 		},
 		create:function(){
 			pipeGroup = game.add.group();
+
+			score = 0;
+			topScore = localStorage.getItem("topFlappyScore")===null?0:localStorage.getItem("topFlappyScore");
+			scoreText = game.add.text(10,10,"-",{
+				font:"bold 16px Arial"
+			});
+			updateScore();
+
 			game.stage.backgroundColor = "#87CEEB";
 			game.stage.disableVisibilityChange = true;
 			game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -54,6 +66,10 @@ window.onload = function() {
    game.state.add("Play",play);
    game.state.start("Play");
 
+	function updateScore(){
+		scoreText.text = "Score: "+score+"\nBest: "+topScore;
+	}
+
 	function flap(){
 		bird.body.velocity.y = -birdFlapPower;
 	}
@@ -71,6 +87,7 @@ window.onload = function() {
 	}
 
 	function die(){
+		localStorage.setItem("topFlappyScore",Math.max(score,topScore));
 		game.state.start("Play");
 	}
 
@@ -79,12 +96,18 @@ window.onload = function() {
 		Phaser.Sprite.call(this, game, x, y, "pipe");
 		game.physics.enable(this, Phaser.Physics.ARCADE);
 		this.body.velocity.x = speed;
+		this.giveScore = true;
 	};
 
 	Pipe.prototype = Object.create(Phaser.Sprite.prototype);
 	Pipe.prototype.constructor = Pipe;
 
 	Pipe.prototype.update = function() {
+		if((this.x + this.width < bird.x) && (this.giveScore)){
+			score += 0.5;
+			updateScore();
+			this.giveScore = false;
+		}
 		if(this.x < -this.width){
 			this.destroy();
 		}
