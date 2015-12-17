@@ -73,7 +73,7 @@ window.onload = function() {
 		game.state.start("Play");
 	}
 
-	
+
 	Pipe = function (game, x, y, speed) {
 		Phaser.Sprite.call(this, game, x, y, "pipe");
 		game.physics.enable(this, Phaser.Physics.ARCADE);
