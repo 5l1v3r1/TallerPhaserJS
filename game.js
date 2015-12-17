@@ -30,7 +30,7 @@ window.onload = function() {
 			game.physics.startSystem(Phaser.Physics.ARCADE);
 
 			bird = game.add.sprite(80,240,"bird");
-			bird.anchor.set(0.5);
+			//bird.anchor.set(0.5);
 
 			game.physics.arcade.enable(bird);
 			bird.body.gravity.y = birdGravity;
