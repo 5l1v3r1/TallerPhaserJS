@@ -19,7 +19,8 @@ window.onload = function() {
 
   play.prototype = {
 		preload:function(){
-		  game.load.image("bird", "bird.png");
+		  //game.load.image("bird", "bird.png");
+			game.load.spritesheet("bird",'birdSprite.png',45,32,3);
 			game.load.image("pipe", "pipe.png");
 
 		},
@@ -30,8 +31,8 @@ window.onload = function() {
 			game.physics.startSystem(Phaser.Physics.ARCADE);
 
 			bird = game.add.sprite(80,240,"bird");
-			//bird.anchor.set(0.5);
-
+			bird.animations.add("fly");
+			bird.animations.play("fly",6,true);
 			game.physics.arcade.enable(bird);
 			bird.body.gravity.y = birdGravity;
 
