@@ -13,7 +13,7 @@ window.onload = function() {
 	var pipeInterval = 2000;
 
 	var pipeHole = 120;
-	
+
 	var pipeGroup;
 
   var play = function(game){};
@@ -33,7 +33,6 @@ window.onload = function() {
 
 			/* Rellenar */
 
-			addPipe();
 		},
 		update:function(){
 			/* Rellenar */
