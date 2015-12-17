@@ -64,7 +64,7 @@ window.onload = function() {
    game.state.start("Play");
 
 	function updateScore(){
-		scoreText.text = "Score: "+score+"\nBest: "+topScore;
+		scoreText.text = "Puntuacion: "+score+"\nMejor puntiacion: "+topScore;
 	}
 
 	function flap(){
